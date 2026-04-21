@@ -22,6 +22,7 @@ public class SingleThreadExecutorExample {
             service.execute(printRecords);
             service.execute(printInventory);
             System.out.println("end");
+            service.shutdown();
         }
     }
 
