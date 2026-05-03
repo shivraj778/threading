@@ -64,6 +64,45 @@ class PlatFormVsVirtual {
 
         return head.next;
     }
+
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode head1 = list1;
+        ListNode head2 = list2;
+
+        ListNode newList =  new ListNode();
+
+        ListNode temp1 = head1;
+        ListNode temp2 = head2;
+
+        ListNode head = newList;
+        ListNode temp = head;
+
+        while (temp1 != null && temp2 != null) {
+            ListNode node = new ListNode();
+            int value1 = temp1.val;
+            int value2 = temp2.val;
+            if (value1 < value2) {
+                node.val = value1;
+                temp1 = temp1.next;
+            } else {
+                node.val = value2;
+                temp2 = temp2.next;
+            }
+            temp.next = node;
+            temp = temp.next;
+        }
+
+        if (temp1 == null) {
+            while (temp2 != null) {
+                ListNode node = new ListNode();
+                node.val = temp2.val;
+
+            }
+
+        }
+
+        return head.next;
+    }
 }
 
 
