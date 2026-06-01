@@ -1,5 +1,10 @@
 package datastructure.tree.binarytree;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 public class BinaryTree {
     Node root;
     class Node {
@@ -47,5 +52,22 @@ public class BinaryTree {
             }
         }
         return false;
+    }
+    public List<Integer> BFS() {
+        List<Integer> list = new ArrayList<>();
+        Queue<Node> queue =  new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            Node currentNode = queue.remove();
+            if (currentNode.left != null) {
+                queue.add(currentNode.left);
+            }
+            if (currentNode.right != null) {
+                queue.add(currentNode.right);
+            }
+            list.add(currentNode.value);
+        }
+
+        return list;
     }
 }
