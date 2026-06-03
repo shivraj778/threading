@@ -14,5 +14,10 @@ public class Main {
         System.out.println(obj.root.right.value);
         System.out.println(obj.root.value);
         System.out.println(obj.BFS());
+
+        System.out.println("**************");
+        System.out.println(obj.preOrder());
+        System.out.println(obj.postOrder());
+        System.out.println(obj.inOrder());
     }
 }

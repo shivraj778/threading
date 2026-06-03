@@ -70,4 +70,56 @@ public class BinaryTree {
 
         return list;
     }
+    public List<Integer> preOrder() {
+        List<Integer> list = new ArrayList<>();
+
+        class Order {
+            Order(Node node){
+                list.add(node.value);
+                if (node.left != null) {
+                    new Order(node.left);
+                }
+                if (node.right != null) {
+                    new Order(node.right);
+                }
+            }
+        }
+        new Order(root);
+        return list;
+    }
+
+    public List<Integer> postOrder() {
+        List<Integer> list =  new ArrayList<>();
+        class Order{
+            Order(Node node) {
+                if (node.left != null) {
+                    new Order(node.left);
+                }
+                if (node.right != null) {
+                    new Order(node.right);
+                }
+                list.add(node.value);
+            }
+        }
+        new Order(root);
+        return list;
+    }
+
+    public List<Integer> inOrder() {
+        List<Integer> list =  new ArrayList<>();
+        class Order {
+            Order(Node node) {
+                if (node.left != null) {
+                    new Order(node.left);
+                }
+                list.add(node.value);
+                if (node.right != null) {
+                    new Order(node.right);
+                }
+            }
+        }
+        new Order(root);
+        return list;
+     }
+
 }
