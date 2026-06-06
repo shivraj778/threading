@@ -150,4 +150,25 @@ public class BinaryTree {
         return list;
      }
 
+     public List<List<Integer>> getLevelOrder(Node node) {
+
+        List<List<Integer>> finalList =  new ArrayList<>();
+         if (node == null) return finalList;
+        Queue<Node> queue  = new LinkedList<>();
+        queue.add(node);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> listInteger =  new ArrayList<>();
+            while (size != 0) {
+                Node node1 = queue.poll();
+                listInteger.add(node1.value);
+                if (node1.left != null) queue.add(node1.left);
+                if (node1.right != null) queue.add(node1.right);
+                size --;
+            }
+            finalList.add(listInteger);
+        }
+        return finalList;
+     }
+
 }

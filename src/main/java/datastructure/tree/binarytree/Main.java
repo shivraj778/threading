@@ -20,5 +20,6 @@ public class Main {
         System.out.println(obj.postOrder());
         System.out.println(obj.inOrder());
         System.out.println(obj.levelOrder(obj.root));
+        System.out.println(obj.getLevelOrder(obj.root));
     }
 }
