@@ -122,4 +122,32 @@ public class BinaryTree {
         return list;
      }
 
+     public List<List<Integer>> levelOrder(Node root) {
+        List<List<Integer>> list =  new ArrayList<>();
+        class Order {
+            Order(List<Node> nodeList) {
+                List<Integer> intList =  new ArrayList<>();
+                List<Node> temp =  new ArrayList<>();
+                for (Node node: nodeList) {
+                    intList.add(node.value);
+                    if (node.left != null) {
+                        temp.add(node.left);
+                    }
+                    if (node.right != null) {
+                        temp.add(node.right);
+                    }
+                }
+                if (!intList.isEmpty()) {
+                    list.add(intList);
+                    new Order(temp);
+                }
+            }
+        }
+        List<Node> nList =  new ArrayList<>();
+        nList.add(root);
+        new Order(nList);
+
+        return list;
+     }
+
 }
