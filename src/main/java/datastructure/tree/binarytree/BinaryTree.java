@@ -171,4 +171,27 @@ public class BinaryTree {
         return finalList;
      }
 
+     public List<List<Integer>> zigzag(Node root) {
+         List<List<Integer>> finalList =  new ArrayList<>();
+         if (root == null) return finalList;
+         Queue<Node> queue =  new LinkedList<>();
+         queue.add(root);
+         int level = 0;
+         while (!queue.isEmpty()) {
+             int size = queue.size();
+             List<Integer> list =  new ArrayList<>();
+             while (size != 0) {
+                 Node node = queue.poll();
+                 if (level % 2 == 0) list.add(node.value);
+                 else list.addFirst(node.value);
+                 if (node.left != null) queue.add(node.left);
+                 if (node.right != null) queue.add(node.right);
+                 size--;
+             }
+             finalList.add(list);
+             level ++;
+         }
+         return  finalList;
+     }
+
 }
