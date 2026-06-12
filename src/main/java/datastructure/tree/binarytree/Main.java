@@ -22,5 +22,6 @@ public class Main {
         System.out.println(obj.levelOrder(obj.root));
         System.out.println(obj.getLevelOrder(obj.root));
         System.out.println(obj.zigzag(obj.root));
+        System.out.println(obj.morrisInorder(obj.root));
     }
 }

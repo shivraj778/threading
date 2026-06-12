@@ -1,9 +1,6 @@
 package datastructure.tree.binarytree;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class BinaryTree {
     Node root;
@@ -193,5 +190,46 @@ public class BinaryTree {
          }
          return  finalList;
      }
+
+     public List<Integer> morrisInorder(Node root) {
+         List<Integer> list = new ArrayList<>();
+         if (root == null) return list;
+         Node currentNode = root;
+         while (currentNode != null) {
+             if (currentNode.left == null) {
+                 list.add(currentNode.value);
+                 currentNode = currentNode.right;
+             } else {
+                 Node rightMostNode = currentNode.left;
+                 while (rightMostNode.right != null && rightMostNode.right != currentNode) {
+                     rightMostNode = rightMostNode.right;
+                 }
+                 if (rightMostNode.right == null) {
+                     rightMostNode.right = currentNode;
+                     list.add(currentNode.value);
+                     currentNode = currentNode.left;
+                 } else {
+                     rightMostNode.right = null;
+                     currentNode = currentNode.right;
+                 }
+
+             }
+
+         }
+         return list;
+     }
+
+     public int minDepth(Node root) {
+        if (root == null) return 0;
+        return dfs(root);
+     }
+
+    private int dfs(Node root) {
+        if (root == null) return Integer.MAX_VALUE;
+        if (root.left == null && root.right == null) return 1;
+        int left = dfs(root.left);
+        int right = dfs(root.right);
+        return 1+ Math.min(left,right);
+    }
 
 }
