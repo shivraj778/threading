@@ -232,4 +232,77 @@ public class BinaryTree {
         return 1+ Math.min(left,right);
     }
 
+
+
+
+
+
+
+
+
+
+
+    public int maxDepth(Node root) {
+        if (root == null) return 0;
+        return dfsM(root);
+    }
+
+    private int dfsM(Node root) {
+        if (root == null) return 0;
+        if (root.left == null && root.right == null) return 1;
+        int left = dfsM(root.left);
+        int right = dfsM(root.right);
+        return 1+Math.max(left,right);
+    }
+
+//    public int dimeterOfTree(Node root) {
+//        if (root == null) return 0;
+//        int left = maxDimeter(root.left);
+//        int right = maxDimeter(root.right);
+//        return left + right;
+//    }
+//
+//    private int maxDimeter(Node root) {
+//        if (root == null) return 0;
+//        if (root.left == null && root.right == null) return 1;
+//        int left = maxDimeter(root.left);
+//        int right = maxDimeter(root.right);
+//        return 1 + Math.max(left,right);
+//    }
+
+    int dimeter = 0;
+    public int dimeterOfTree(Node root) {
+        if (root == null) return dimeter;
+        helper(root);
+        return dimeter;
+    }
+
+    private int helper(Node root) {
+        if (root == null) return 0;
+        int left = helper(root.left);
+        int right = helper(root.right);
+        dimeter = Math.max(dimeter,left+right);
+        return 1+Math.max(left,right);
+    }
+
+
+    public void flatten(Node node) {
+
+        flattenInOrder(node);
+        root = head.right;
+    }
+    Node newNode =  new Node(0);
+    Node head = newNode;
+    Node temp = newNode;
+    private void flattenInOrder(Node root) {
+        if (root != null) {
+            flattenInOrder(root.left);
+            temp.left = null;
+            temp.right = new Node(root.value);
+            temp = temp.right;
+            flattenInOrder(root.right);
+        }
+    }
+
+
 }
