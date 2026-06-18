@@ -113,4 +113,40 @@ public class LinkedList {
         tail = head;
         head = prev;
     }
+
+    public Node removeDuplicate(Node head) {
+        Node fast = head.next;
+        Node slow = head;
+        while (fast != null) {
+            if (fast.value == slow.value) {
+                while (fast.value == slow.value) {
+                    fast = fast.next;
+                }
+                slow.next = fast;
+            } else {
+                fast = fast.next;
+                slow = slow.next;
+            }
+        }
+
+        return head;
+    }
+
+    public Node rotateRight(Node head, int k) {
+        int size = 0;
+        Node curr = head;
+        while (curr.next != null) {
+            curr = curr.next;
+            size++;
+        }
+        k = k % size;
+        curr.next = head;
+        curr = head;
+        for (int i=1; i<size-k; i++) {
+            curr = curr.next;
+        }
+        Node newHead = curr.next;
+        curr.next = null;
+        return newHead;
+    }
 }
