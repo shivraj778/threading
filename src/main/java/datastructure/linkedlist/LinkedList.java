@@ -98,4 +98,19 @@ public class LinkedList {
 
         return head.next;
     }
+
+    public void reverseTheLinkedList() {
+        System.out.println("reverse");
+        Node next = head;
+        Node curr = head;
+        Node prev = null;
+        while (next != null) {
+            next = next.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        tail = head;
+        head = prev;
+    }
 }
