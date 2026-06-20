@@ -15,5 +15,7 @@ public class Main {
 
         linkedList.reverseTheLinkedList();
         linkedList.print();
+        LinkedList.Node reorderList = linkedList.reorderList(linkedList.head);
+        linkedList.print(reorderList);
     }
 }

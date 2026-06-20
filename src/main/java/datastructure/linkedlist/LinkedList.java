@@ -44,6 +44,16 @@ public class LinkedList {
             System.out.print(temp.value + " ");
             temp = temp.next;
         }
+        System.out.println();
+    }
+
+    public void print(Node node) {
+        Node temp = node;
+        while (temp != null) {
+            System.out.print(temp.value + " ");
+            temp = temp.next;
+        }
+        System.out.println();
     }
 
     public Node middleNode(Node head) {
@@ -148,5 +158,70 @@ public class LinkedList {
         Node newHead = curr.next;
         curr.next = null;
         return newHead;
+    }
+
+    // leetcode 143
+    public Node reorderList(Node head) {
+        if (head == null || head.next == null) return head;
+        Node slow = head;
+        Node fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        Node secondHead = reverseSecondPartOfLinkedList(slow.next);
+        slow.next = null;
+        return mergeTowLinkedList(head,secondHead);
+
+    }
+
+    private Node mergeTowLinkedList(Node head, Node secondHead) {
+        int count = 1;
+        Node temp = head;
+        Node temp2 = secondHead;
+        Node next = secondHead;
+        while (next != null) {
+            next = next.next;
+            temp2.next = temp.next;
+            temp.next = temp2;
+            temp = temp2.next;
+            temp2 = next;
+        }
+        return head;
+
+//        Node newHead =  new Node(head.value);
+//        head = head.next;
+//        Node temp = head;
+//        Node temp1 = secondHead;
+//        Node newTemp = newHead;
+//        while (temp != null && temp1 !=null) {
+//            Node node;
+//            if (count % 2 == 0) {
+//               node =  new Node(temp.value);
+//               temp = temp.next;
+//            } else {
+//                node = new Node(temp1.value);
+//                temp1 = temp1.next;
+//            }
+//            newTemp.next = node;
+//            newTemp = newTemp.next;
+//            ++count;
+//        }
+//        newTemp.next = temp;
+//        return newHead;
+    }
+
+    private Node reverseSecondPartOfLinkedList(Node head) {
+        if (head.next == null) return head;
+        Node next = head;
+        Node curr = null;
+        Node prev = null;
+        while (next != null) {
+            curr = next;
+            next = next.next;
+            curr.next = prev;
+            prev = curr;
+        }
+        return curr;
     }
 }
